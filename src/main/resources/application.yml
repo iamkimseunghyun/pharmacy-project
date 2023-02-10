@@ -11,7 +11,7 @@ spring:
 spring:
   config:
     activate:
-      on-profile:
+      on-profile: common
 
 kakao:
   rest:
@@ -31,13 +31,21 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+    show-sql: true
   data:
     redis:
       port: 6379
       host: localhost
+
+pharmacy:
+  recommendation:
+    base:
+      url: http://localhost:8080/dir/
 
 ---
 spring:
   config:
     activate:
       on-profile: prod
+
+#  KAKAO_REST_API_KEY=8504d35feff92887e295774d4064b3ec
