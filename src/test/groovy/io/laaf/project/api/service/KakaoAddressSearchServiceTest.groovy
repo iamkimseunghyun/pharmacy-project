@@ -21,7 +21,7 @@ class KakaoAddressSearchServiceTest extends AbstractIntegrationContainerBaseTest
         result == null
     }
 
-    def "주소 값이 valid하면 requestAddressSearch 메소드는 정상적으로 document를 반환한다."() {
+    def "주소값이 valid하다면, requestAddressSearch 메소드는 정상적으로 document를 반환한다."() {
         given:
         def address = "서울 성북구 종암로 10길"
 
@@ -33,6 +33,7 @@ class KakaoAddressSearchServiceTest extends AbstractIntegrationContainerBaseTest
         result.metaDto.totalCount > 0
         result.documentList.get(0).addressName != null
     }
+
 
     def "정상적인 주소를 입력했을 경우, 정상적으로 위도 경도로 변환 된다."() {
         given:

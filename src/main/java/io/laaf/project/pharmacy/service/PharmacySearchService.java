@@ -1,5 +1,6 @@
 package io.laaf.project.pharmacy.service;
 
+import io.laaf.project.pharmacy.cache.PharmacyRedisTemplateService;
 import io.laaf.project.pharmacy.dto.PharmacyDto;
 import io.laaf.project.pharmacy.entity.Pharmacy;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,12 @@ import java.util.stream.Collectors;
 public class PharmacySearchService {
 
     private final PharmacyRepositoryService pharmacyRepositoryService;
+    private final PharmacyRedisTemplateService pharmacyRedisTemplateService;
 
     public List<PharmacyDto> searchPharmacyDtoList() {
         // redis
+        List<PharmacyDto> pharmacyDtoList = pharmacyRedisTemplateService.findAll();
+        if(!pharmacyDtoList.isEmpty()) return pharmacyDtoList;
 
         // db
         return pharmacyRepositoryService.findAll()

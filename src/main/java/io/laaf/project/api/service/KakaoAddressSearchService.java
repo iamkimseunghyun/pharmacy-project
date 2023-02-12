@@ -33,13 +33,14 @@ public class KakaoAddressSearchService {
             backoff = @Backoff(delay = 2000)
     )
     public KakaoApiResponseDto requestAddressSearch(String address) {
-
-        if(ObjectUtils.isEmpty(address)) return null;
+        if (ObjectUtils.isEmpty(address)) {
+            return null;
+        }
 
         URI uri = kakaoUriBuilderService.buildUriByAddressSearch(address);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.AUTHORIZATION, "KakaoAK " +kakaoRestApiKey);
+        headers.set(HttpHeaders.AUTHORIZATION, "KakaoAK " + kakaoRestApiKey);
         HttpEntity httpEntity = new HttpEntity<>(headers);
 
         // kakao api 호출
